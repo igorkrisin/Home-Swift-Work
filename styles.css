@@ -38,6 +38,7 @@ nav .button:hover {
 
 main {
     padding: 20px;
+    padding-bottom: 100px; /* Отступ снизу */
 }
 
 footer {
@@ -48,4 +49,16 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+/* Стили для подсветки кода */
+pre {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+code {
+    font-family: "Courier New", Courier, monospace;
 }
