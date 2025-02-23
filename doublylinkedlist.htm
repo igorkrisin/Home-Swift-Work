@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Двусвязный список</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Двусвязный список</h1>
+        <nav>
+            <a href="index.html" class="button">Главная</a>
+            <a href="homework.html" class="button">Домашние задания</a>
+            <a href="materials.html" class="button">Материалы для изучения</a>
+            <a href="#" class="button">Кнопка 4</a>
+            <a href="#" class="button">Кнопка 5</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Что такое двусвязный список?</h2>
+            <p>
+                Двусвязный список — это структура данных, состоящая из узлов (элементов), где каждый узел хранит ссылку не только на следующий элемент, но и на предыдущий. Это делает возможным перемещение как вперед, так и назад по списку.
+            </p>
+            <h3>Принцип работы:</h3>
+            <ul>
+                <li>Каждый узел содержит данные и две ссылки:</li>
+                <ul>
+                    <li><code>next</code> — указывает на следующий узел.</li>
+                    <li><code>prev</code> — указывает на предыдущий узел.</li>
+                </ul>
+                <li>Добавление элемента возможно как в начало, так и в конец списка.</li>
+                <li>Удаление элемента требует корректировки ссылок <code>next</code> и <code>prev</code>.</li>
+                <li>Перебор списка возможен в обоих направлениях.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Иллюстрация</h2>
+            <div id="image-placeholder">
+                <!-- Место для картинки -->
+                <p>Здесь будет изображение двусвязного списка.</p>
+                <img src="doubly_linked_list.png" alt="Двусвязный список" style="max-width: 100%; display: none;">
+            </div>
+        </section>
+
+        <section>
+            <h2>Код задания</h2>
+            <pre><code class="swift">
+// Узел (элемент) двусвязного списка
+class Node&lt;T&gt; {
+    var value: T  // Хранимое значение
+    var next: Node?  // Ссылка на следующий узел
+    weak var prev: Node?  // Слабая ссылка на предыдущий узел (чтобы избежать утечки памяти)
+    
+    init(value: T, next: Node? = nil, prev: Node? = nil) {
+        self.value = value
+        self.next = next
+        self.prev = prev
+    }
+}
+
+// Двусвязный список
+class DoublyLinkedList&lt;T&gt; {
+    private var head: Node&lt;T&gt;?  // Ссылка на первый узел списка
+    private var tail: Node&lt;T&gt;?  // Ссылка на последний узел списка
+    
+    // Проверка на пустоту списка
+    func isEmpty() -> Bool {
+        // Внутренности функции удалены
+    }
+    
+    // Вывод списка
+    func printList() {
+        // Внутренности функции удалены
+    }
+    
+    // Поиск элемента
+    func search(value: T) -> Bool where T: Equatable {
+        // Внутренности функции удалены
+    }
+    
+    // Добавление в начало списка
+    func prepend(_ value: T) {
+        // Внутренности функции удалены
+    }
+    
+    // Добавление в конец списка
+    func append(_ value: T) {
+        // Внутренности функции удалены
+    }
+    
+    // Удаление элемента по значению
+    func remove(_ value: T) where T: Equatable {
+        // Внутренности функции удалены
+    }
+    
+    // Удаление первого элемента
+    func removeHead() -> T? {
+        // Внутренности функции удалены
+    }
+    
+    // Удаление последнего элемента
+    func removeTail() -> T? {
+        // Внутренности функции удалены
+    }
+}
+
+// Пример использования
+let list = DoublyLinkedList&lt;Int&gt;()
+print("doubleLinkList print")
+list.append(1)
+list.append(2)
+list.append(3)
+list.printList() // 1 &lt;-&gt; 2 &lt;-&gt; 3 &lt;-&gt; nil
+
+list.prepend(0)
+list.printList() // 0 &lt;-&gt; 1 &lt;-&gt; 2 &lt;-&gt; 3 &lt;-&gt; nil
+
+list.remove(2)
+list.printList() // 0 &lt;-&gt; 1 &lt;-&gt; 3 &lt;-&gt; nil
+
+print(list.removeHead() ?? "nil") // Удалит 3
+print(list.removeTail() ?? "nil")// Удалит 0
+print(list.removeHead() ?? "nil") // Удалит 1
+print(list.removeTail() ?? "nil") // nil
+print(list.removeTail() ?? "nil") // nil
+print(list.removeTail() ?? "nil") // nil
+print(list.removeTail() ?? "nil") // nil
+print(list.removeTail() ?? "nil") // nil
+            </code></pre>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Ваше имя. Все права защищены.</p>
+    </footer>
+</body>
+</html>
