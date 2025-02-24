@@ -10,7 +10,8 @@
 </header>
 
 <script>
-    function changeTitle(title) {
+    function changeTitle(event, title) {
+        event.preventDefault(); // Предотвращаем переход по ссылке
         document.getElementById('header-title').innerText = title;
     }
 </script>
