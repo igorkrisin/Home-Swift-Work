@@ -1,17 +1,19 @@
 <header>
     <h1 id="header-title">Главная страница</h1>
     <nav>
-        <a href="index.html" class="button" onclick="setTitle('Главная')">Главная</a>
-        <a href="homework.html" class="button" onclick="setTitle('Домашние задания')">Домашние задания</a>
-        <a href="materials.html" class="button" onclick="setTitle('Материалы для изучения')">Материалы для изучения</a>
-        <a href="#" class="button" onclick="setTitle('Кнопка 4')">Кнопка 4</a>
-        <a href="#" class="button" onclick="setTitle('Кнопка 5')">Кнопка 5</a>
+        <a href="index.html" class="button" onclick="setTitleAndRedirect(event, 'Главная')">Главная</a>
+        <a href="homework.html" class="button" onclick="setTitleAndRedirect(event, 'Домашние задания')">Домашние задания</a>
+        <a href="materials.html" class="button" onclick="setTitleAndRedirect(event, 'Материалы для изучения')">Материалы для изучения</a>
+        <a href="button4.html" class="button" onclick="setTitleAndRedirect(event, 'Кнопка 4')">Кнопка 4</a>
+        <a href="button5.html" class="button" onclick="setTitleAndRedirect(event, 'Кнопка 5')">Кнопка 5</a>
     </nav>
 </header>
 
 <script>
-    function setTitle(title) {
+    function setTitleAndRedirect(event, title) {
+        event.preventDefault(); // Предотвращаем переход по ссылке
         localStorage.setItem('headerTitle', title); // Сохраняем заголовок в локальном хранилище
+        window.location.href = event.currentTarget.href; // Переходим по ссылке
     }
 
     // При загрузке страницы устанавливаем заголовок из локального хранилища
