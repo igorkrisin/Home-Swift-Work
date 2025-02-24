@@ -1,6 +1,6 @@
-function setTitle(title) {
-    document.getElementById('header-title').innerText = title;
-    localStorage.setItem('headerTitle', title);
+function setTitle(newTitle) {
+    document.getElementById('header-title').innerText = newTitle;
+    document.getElementById('page-title').innerText = newTitle; // Изменяем заголовок страницы
 }
 
 window.onload = function() {
@@ -18,4 +18,3 @@ function loadHeader() {
             document.getElementById('header').innerHTML = data; // Исправлено на 'header'
         });
 }
-
