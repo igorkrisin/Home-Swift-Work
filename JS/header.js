@@ -18,3 +18,4 @@ function loadHeader() {
             document.getElementById('header').innerHTML = data; // Исправлено на 'header'
         });
 }
+
