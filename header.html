@@ -1,10 +1,16 @@
 <header>
-    <h1>Двусвязный список</h1>
+    <h1 id="header-title">Двусвязный список</h1>
     <nav>
-        <a href="index.html" class="button">Главная</a>
-        <a href="homework.html" class="button">Домашние задания</a>
-        <a href="materials.html" class="button">Материалы для изучения</a>
-        <a href="#" class="button">Кнопка 4</a>
-        <a href="#" class="button">Кнопка 5</a>
+        <a href="index.html" class="button" onclick="changeTitle('Главная')">Главная</a>
+        <a href="homework.html" class="button" onclick="changeTitle('Домашние задания')">Домашние задания</a>
+        <a href="materials.html" class="button" onclick="changeTitle('Материалы для изучения')">Материалы для изучения</a>
+        <a href="#" class="button" onclick="changeTitle('Кнопка 4')">Кнопка 4</a>
+        <a href="#" class="button" onclick="changeTitle('Кнопка 5')">Кнопка 5</a>
     </nav>
 </header>
+
+<script>
+    function changeTitle(title) {
+        document.getElementById('header-title').innerText = title;
+    }
+</script>
