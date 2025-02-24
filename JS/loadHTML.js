@@ -7,3 +7,9 @@ function loadHTML(elementId, file) {
         })
         .catch(error => console.error('Ошибка при загрузке:', error));
 }
+
+// Загрузка хедера и футера
+window.onload = function() {
+    loadHTML('header', 'header.html');
+    loadHTML('footer', 'footer.html');
+};
