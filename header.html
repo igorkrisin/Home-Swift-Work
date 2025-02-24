@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Название страницы</title>
+    <title id="page-title">Название страницы</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="header.js" defer></script>
+    <script src="JS/loadHTML.js" defer></script>
 </head>
 <body>
     <header>
@@ -17,6 +19,12 @@
             <a href="#" onclick="setTitle('Кнопка 5')">Кнопка 5</a>
         </nav>
     </header>
-    <!-- Остальная часть страницы -->
+    <div id="header"></div> <!-- Контейнер для хедера -->
+    <main>
+        <section>
+            <h2>О курсе</h2>
+            <p>Здесь вы найдете все необходимые материалы и задания для изучения Swift.</p>
+        </section>
+    </main>
+    <div id="footer"></div> <!-- Контейнер для футера -->
 </body>
-</html>
