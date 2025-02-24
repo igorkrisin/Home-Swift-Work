@@ -1,17 +1,24 @@
 <header>
     <h1 id="header-title">Главная страница</h1>
     <nav>
-        <a href="index.html" class="button" onclick="changeTitle('Главная')">Главная</a>
-        <a href="homework.html" class="button" onclick="changeTitle('Домашние задания')">Домашние задания</a>
-        <a href="materials.html" class="button" onclick="changeTitle('Материалы для изучения')">Материалы для изучения</a>
-        <a href="#" class="button" onclick="changeTitle('Кнопка 4')">Кнопка 4</a>
-        <a href="#" class="button" onclick="changeTitle('Кнопка 5')">Кнопка 5</a>
+        <a href="index.html" class="button" onclick="setTitle('Главная')">Главная</a>
+        <a href="homework.html" class="button" onclick="setTitle('Домашние задания')">Домашние задания</a>
+        <a href="materials.html" class="button" onclick="setTitle('Материалы для изучения')">Материалы для изучения</a>
+        <a href="button4.html" class="button" onclick="setTitle('Кнопка 4')">Кнопка 4</a>
+        <a href="button5.html" class="button" onclick="setTitle('Кнопка 5')">Кнопка 5</a>
     </nav>
 </header>
 
 <script>
-    function changeTitle(event, title) {
-        event.preventDefault(); // Предотвращаем переход по ссылке
-        document.getElementById('header-title').innerText = title;
+    function setTitle(title) {
+        localStorage.setItem('headerTitle', title); // Сохраняем заголовок в локальном хранилище
     }
+
+    // При загрузке страницы устанавливаем заголовок из локального хранилища
+    window.onload = function() {
+        const savedTitle = localStorage.getItem('headerTitle');
+        if (savedTitle) {
+            document.getElementById('header-title').innerText = savedTitle;
+        }
+    };
 </script>
