@@ -1,0 +1,29 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Материалы для изучения</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="JS/loadHTML.js" defer></script> 
+</head>
+<body>
+    <header>
+        <h1>Материалы для изучения</h1>
+        <nav>
+            <a href="index.html" class="button">Главная</a>
+            <a href="homework.html" class="button">Домашние задания</a>
+            <a href="materials.html" class="button">Материалы для изучения</a>
+            <a href="#" class="button">Кнопка 4</a>
+            <a href="#" class="button">Кнопка 5</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Видео уроки</h2>
+            <!-- Вариант с YouTube -->
+            <iframe width="640" height="360" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        </section>
+    </main>
+    <div id="footer"></div> <!-- Контейнер для футера -->
+</body>
+</html>
