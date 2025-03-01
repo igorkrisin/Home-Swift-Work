@@ -24,7 +24,7 @@
     <p><strong>Unit-тесты (модульные тесты)</strong> проверяют работу отдельных функций или классов изолированно. Они помогают убедиться, что каждый компонент работает правильно.</p>
     
     <h3>🛠 Основы Unit Testing в Swift</h3>
-    <p>Для написания тестов используется <strong>XCTest</strong>. В Xcode можно создать <em>Unit Testing Target</em>, и он автоматически подключит этот фреймворк.</p>
+    <p>Для написания тестов используется <strong>XCTest или Testing</strong>. В Xcode можно создать <em>Unit Testing Target</em>, и он автоматически подключит этот фреймворк.</p>
        <section>
             <h2>Видео уроки</h2>
             <div class="video-container">
@@ -41,55 +41,55 @@
         <section id="unit-testing">
     
     
-    <h3>🔍 Пример теста:</h3>
-    <pre>
-    <code>
-    import XCTest
-    @testable import YourApp // Импортируем основное приложение для тестирования
+   <section id="unit-testing">
+    <h2>Unit-тестирование в Swift</h2>
+    <p>Unit-тестирование — это процесс проверки отдельных модулей кода, таких как функции или классы, чтобы убедиться, что они работают корректно.</p>
 
-class MathTests: XCTestCase {
-    func testSumm() {
-        let result = summ(a: 2, b: 3)
-        XCTAssertEqual(result, 5, "Функция summ работает неверно")
+    <h3>Тестирование с XCTest</h3>
+    <p>XCTest — стандартный фреймворк для тестирования в Xcode. Основные компоненты:</p>
+    <ul>
+        <li><strong>XCTestCase</strong> — базовый класс для тестов.</li>
+        <li><strong>setUp()</strong> и <strong>tearDown()</strong> — методы, выполняемые перед и после тестов.</li>
+        <li><strong>XCTAssert</strong> — функции для проверки условий.</li>
+    </ul>
+
+    <h3>Пример теста с XCTest</h3>
+    <pre><code class="swift">import XCTest
+@testable import myProject 
+
+final class StackTests: XCTestCase {
+    func testAppendMult() {
+        var stack = Stack<Double>()
+        stack.appendMult([3, 2, 4.6], isReverse: false)
+
+        XCTAssertEqual(stack.showStack(), [3, 2, 4.6], "Стек должен содержать 3, 2, 4.6")
+
+        stack.pop()
+        XCTAssertEqual(stack.showStack(), [3, 2], "После pop стек должен содержать 3, 2")
+
+        stack.appendMult([1.5], isReverse: true)
+        XCTAssertEqual(stack.showStack(), [1.5, 3, 2], "Стек должен добавляться в обратном порядке")
     }
-}
-        </code>
-    </pre>
+}</code></pre>
     
-    <h3>💪 Основные команды:</h3>
+    <h3>Запуск тестов</h3>
+    <p>Тесты запускаются в Xcode:</p>
     <ul>
-        <li><code>XCTAssertEqual(a, b)</code> – Проверяет, что <code>a == b</code></li>
-        <li><code>XCTAssertTrue(condition)</code> – Проверяет, что условие <code>true</code></li>
-        <li><code>XCTAssertFalse(condition)</code> – Проверяет, что условие <code>false</code></li>
-        <li><code>XCTAssertNil(object)</code> – Проверяет, что объект <code>nil</code></li>
-        <li><code>XCTAssertNotNil(object)</code> – Проверяет, что объект <strong>не nil</strong></li>
+        <li>Нажмите <code>⌘ + U</code>, чтобы запустить все тесты.</li>
+        <li>Откройте вкладку <strong>Test Navigator (⌘ + 6)</strong>, чтобы увидеть результаты.</li>
     </ul>
+
+    <h3>Тестирование с Testing</h3>
+    <p>Swift также поддерживает <code>import Testing</code> для модульного тестирования.</p>
+    <pre><code class="swift">import Testing
+
+struct TestingUnit {
+    @Test func example() {
+        #expect(summ(a: 2, b: 3) == 5)
+    }
+}</code></pre>
     
-    <h3>🚀 Как запустить тесты?</h3>
-    <ol>
-        <li>Открыть Xcode</li>
-        <li>Перейти в <code>Product → Test</code> (<code>Cmd + U</code>)</li>
-        <li>Смотреть результаты в Test Navigator (<code>⌘+6</code>)</li>
-    </ol>
-    
-    <h3>🔄 Тестирование асинхронного кода</h3>
-    <pre>
-        <code>
-        func testAsyncFunction() async {
-            let result = await someAsyncFunction()
-            XCTAssertEqual(result, expectedValue)
-        }
-        </code>
-    </pre>
-    
-    <h3>🎯 Вывод:</h3>
-    <ul>
-        <li>Unit-тесты помогают находить ошибки до релиза</li>
-        <li>Используем <code>XCTest</code> и <code>XCTAssert...</code></li>
-        <li>Запускаем тесты через <code>Cmd + U</code></li>
-        <li>Тестируем <code>async</code> и мокируем зависимости</li>
-    </ul>
-    <p>✨ Теперь ты знаешь, как тестировать код в Swift! ✨</p>
+    <p>Этот метод позволяет писать тесты более декларативно.</p>
 </section>
 
     </main>
