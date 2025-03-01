@@ -20,6 +20,11 @@
         </nav>
     </header>
     <main>
+        <h2>✅ Что такое Unit Test в Swift?</h2>
+    <p><strong>Unit-тесты (модульные тесты)</strong> проверяют работу отдельных функций или классов изолированно. Они помогают убедиться, что каждый компонент работает правильно.</p>
+    
+    <h3>🛠 Основы Unit Testing в Swift</h3>
+    <p>Для написания тестов используется <strong>XCTest</strong>. В Xcode можно создать <em>Unit Testing Target</em>, и он автоматически подключит этот фреймворк.</p>
        <section>
             <h2>Видео уроки</h2>
             <div class="video-container">
@@ -33,6 +38,60 @@
             <!-- Ссылка для скачивания файла -->
             <a href="../files/myProject.zip" download>Скачать ZIP</a>
         </section>
+        <section id="unit-testing">
+    
+    
+    <h3>🔍 Пример теста:</h3>
+    <pre>
+    <code>
+    import XCTest
+    @testable import YourApp // Импортируем основное приложение для тестирования
+
+class MathTests: XCTestCase {
+    func testSumm() {
+        let result = summ(a: 2, b: 3)
+        XCTAssertEqual(result, 5, "Функция summ работает неверно")
+    }
+}
+        </code>
+    </pre>
+    
+    <h3>💪 Основные команды:</h3>
+    <ul>
+        <li><code>XCTAssertEqual(a, b)</code> – Проверяет, что <code>a == b</code></li>
+        <li><code>XCTAssertTrue(condition)</code> – Проверяет, что условие <code>true</code></li>
+        <li><code>XCTAssertFalse(condition)</code> – Проверяет, что условие <code>false</code></li>
+        <li><code>XCTAssertNil(object)</code> – Проверяет, что объект <code>nil</code></li>
+        <li><code>XCTAssertNotNil(object)</code> – Проверяет, что объект <strong>не nil</strong></li>
+    </ul>
+    
+    <h3>🚀 Как запустить тесты?</h3>
+    <ol>
+        <li>Открыть Xcode</li>
+        <li>Перейти в <code>Product → Test</code> (<code>Cmd + U</code>)</li>
+        <li>Смотреть результаты в Test Navigator (<code>⌘+6</code>)</li>
+    </ol>
+    
+    <h3>🔄 Тестирование асинхронного кода</h3>
+    <pre>
+        <code>
+        func testAsyncFunction() async {
+            let result = await someAsyncFunction()
+            XCTAssertEqual(result, expectedValue)
+        }
+        </code>
+    </pre>
+    
+    <h3>🎯 Вывод:</h3>
+    <ul>
+        <li>Unit-тесты помогают находить ошибки до релиза</li>
+        <li>Используем <code>XCTest</code> и <code>XCTAssert...</code></li>
+        <li>Запускаем тесты через <code>Cmd + U</code></li>
+        <li>Тестируем <code>async</code> и мокируем зависимости</li>
+    </ul>
+    <p>✨ Теперь ты знаешь, как тестировать код в Swift! ✨</p>
+</section>
+
     </main>
     <div id="footer"></div> <!-- Контейнер для футера -->
 </body>
