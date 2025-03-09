@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простое дерево</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Подключение highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+    <header>
+        <h1>Простое дерево</h1>
+        <nav>
+            <a href="index.html" class="button">Главная</a>
+            <a href="homework.html" class="button">Домашние задания</a>
+            <a href="materials.html" class="button">Материалы для изучения</a>
+            <a href="#" class="button">Кнопка 4</a>
+            <a href="#" class="button">Кнопка 5</a>
+        </nav>
+    </header>
 
+    <main>
+        <section>
+            <h2>Что такое бинарное дерево?</h2>
+            <p>
+                Бинарное дерево — это структура данных, в которой каждый узел имеет не более двух потомков: левого и правого. 
+                Оно используется в алгоритмах поиска, сортировки и других задачах.
+            </p>
+            <h3>Принцип работы:</h3>
+            <ul>
+                <li>Каждый узел содержит данные и две ссылки:</li>
+                <ul>
+                    <li><code>left</code> — указывает на левого потомка.</li>
+                    <li><code>right</code> — указывает на правого потомка.</li>
+                </ul>
+                <li>Добавление элемента определяется его значением: меньше родителя — влево, больше — вправо.</li>
+                <li>Обход дерева возможен в различных порядках: прямой, симметричный и обратный.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Иллюстрация</h2>
+            <div id="image-placeholder">
+                <img src="images/binaryTree.jpg" alt="Бинарное дерево" style="max-width: 100%;">
+            </div>
+        </section>
+
+        <section>
+            <h2>Полезные ссылки</h2>
+            <ul>
+                <li>
+                  <a href="https://ru.wikipedia.org/wiki/%D0%91%D0%B8%D0%BD%D0%B0%D1%80%D0%BD%D0%BE%D0%B5_%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE">
+                    Подробнее о бинарных деревьях
+                  </a>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Код задания</h2>
+            <pre><code class="swift">
+// Узел бинарного дерева
+class TreeNode<T: Comparable> {
+    var value: T
+    var left: TreeNode?
+    var right: TreeNode?
+
+    init(value: T) {
+        self.value = value
+    }
+}
+
+// Бинарное дерево
+class BinaryTree<T: Comparable> {
+    var root: TreeNode<T>?
+    
+    // Добавление элемента
+    func insert(_ value: T) {
+        root = insertRecursively(root, value)
+    }
+    
+    private func insertRecursively(_ node: TreeNode<T>?, _ value: T) -> TreeNode<T> {
+        guard let node = node else { return TreeNode(value: value) }
+        
+        if value < node.value {
+            node.left = insertRecursively(node.left, value)
+        } else {
+            node.right = insertRecursively(node.right, value)
+        }
+        return node
+    }
+    
+    // Обход дерева в порядке "In-Order"
+    func inOrderTraversal(_ node: TreeNode<T>?) {
+        guard let node = node else { return }
+        inOrderTraversal(node.left)
+        print(node.value)
+        inOrderTraversal(node.right)
+    }
+}
+
+// Пример использования
+let tree = BinaryTree<Int>()
+tree.insert(5)
+tree.insert(3)
+tree.insert(7)
+tree.insert(2)
+tree.insert(4)
+tree.insert(6)
+tree.insert(8)
+
+tree.inOrderTraversal(tree.root) // Выведет: 2 3 4 5 6 7 8
+            </code></pre>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Ваше имя. Все права защищены.</p>
+    </footer>
+</body>
+</html>
