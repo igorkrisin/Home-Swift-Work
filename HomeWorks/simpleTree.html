@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Простое дерево</title>
     <link rel="stylesheet" href="../styles.css">
-    <!-- Подключение highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
@@ -24,101 +23,89 @@
 
     <main>
         <section>
-            <h2>Что такое бинарное дерево?</h2>
+            <h2>Что такое простое дерево?</h2>
             <p>
-                Бинарное дерево — это структура данных, в которой каждый узел имеет не более двух потомков: левого и правого. 
-                Оно используется в алгоритмах поиска, сортировки и других задачах.
+                Дерево (Tree) – это нелинейная структура данных, состоящая из узлов, которые соединены связями (ребрами). 
+                В простом дереве каждый узел может иметь несколько дочерних узлов, но только одного родителя (кроме корневого узла).
             </p>
             <h3>Принцип работы:</h3>
             <ul>
-                <li>Каждый узел содержит данные и две ссылки:</li>
-                <ul>
-                    <li><code>left</code> — указывает на левого потомка.</li>
-                    <li><code>right</code> — указывает на правого потомка.</li>
-                </ul>
-                <li>Добавление элемента определяется его значением: меньше родителя — влево, больше — вправо.</li>
-                <li>Обход дерева возможен в различных порядках: прямой, симметричный и обратный.</li>
+                <li>Каждый узел содержит данные и список дочерних узлов.</li>
+                <li>Корневой узел является начальной точкой дерева.</li>
+                <li>Добавление узла выполняется через указание родительского узла.</li>
+                <li>Удаление узла приводит к удалению всех его потомков.</li>
+                <li>Поиск узла может быть выполнен по значению.</li>
             </ul>
         </section>
 
         <section>
-            <h2>Иллюстрация</h2>
-            <div id="image-placeholder">
-                <img src="images/binaryTree.jpg" alt="Бинарное дерево" style="max-width: 100%;">
-            </div>
-        </section>
-
-        <section>
-            <h2>Полезные ссылки</h2>
-            <ul>
-                <li>
-                  <a href="https://ru.wikipedia.org/wiki/%D0%91%D0%B8%D0%BD%D0%B0%D1%80%D0%BD%D0%BE%D0%B5_%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE">
-                    Подробнее о бинарных деревьях
-                  </a>
-                </li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Код задания</h2>
+            <h2>Код структуры дерева на Swift</h2>
             <pre><code class="swift">
-// Узел бинарного дерева
-class TreeNode<T: Comparable> {
+class TreeNode<T> {
     var value: T
-    var left: TreeNode?
-    var right: TreeNode?
-
-    init(value: T) {
+    var parent: TreeNode?
+    var children: [TreeNode] = []
+    
+    init(value: T, parent: TreeNode? = nil) {
         self.value = value
+        self.parent = parent
+    }
+    
+    func addChild(_ child: TreeNode) {
+        child.parent = self
+        children.append(child)
+    }
+    
+    func removeChild(_ child: TreeNode) {
+        children.removeAll { $0 === child }
+        child.parent = nil
     }
 }
 
-// Бинарное дерево
-class BinaryTree<T: Comparable> {
+class SimpleTree<T> {
     var root: TreeNode<T>?
     
-    // Добавление элемента
-    func insert(_ value: T) {
-        root = insertRecursively(root, value)
+    init(root: TreeNode<T>?) {
+        self.root = root
     }
     
-    private func insertRecursively(_ node: TreeNode<T>?, _ value: T) -> TreeNode<T> {
-        guard let node = node else { return TreeNode(value: value) }
-        
-        if value < node.value {
-            node.left = insertRecursively(node.left, value)
-        } else {
-            node.right = insertRecursively(node.right, value)
+    func findNode(value: T) -> TreeNode<T>? where T: Equatable {
+        return findNodeRecursive(node: root, value: value)
+    }
+    
+    private func findNodeRecursive(node: TreeNode<T>?, value: T) -> TreeNode<T>? where T: Equatable {
+        guard let node = node else { return nil }
+        if node.value == value { return node }
+        for child in node.children {
+            if let found = findNodeRecursive(node: child, value: value) {
+                return found
+            }
         }
-        return node
-    }
-    
-    // Обход дерева в порядке "In-Order"
-    func inOrderTraversal(_ node: TreeNode<T>?) {
-        guard let node = node else { return }
-        inOrderTraversal(node.left)
-        print(node.value)
-        inOrderTraversal(node.right)
+        return nil
     }
 }
 
 // Пример использования
-let tree = BinaryTree<Int>()
-tree.insert(5)
-tree.insert(3)
-tree.insert(7)
-tree.insert(2)
-tree.insert(4)
-tree.insert(6)
-tree.insert(8)
+let rootNode = TreeNode(value: 1)
+let tree = SimpleTree(root: rootNode)
 
-tree.inOrderTraversal(tree.root) // Выведет: 2 3 4 5 6 7 8
+let node2 = TreeNode(value: 2)
+let node3 = TreeNode(value: 3)
+let node4 = TreeNode(value: 4)
+
+rootNode.addChild(node2)
+rootNode.addChild(node3)
+node3.addChild(node4)
+
+if let found = tree.findNode(value: 3) {
+    print("Найден узел со значением 3")
+}
             </code></pre>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2023 Ваше имя. Все права защищены.</p>
+        <p>&copy; 2025 Ваше имя. Все права защищены.</p>
     </footer>
 </body>
 </html>
