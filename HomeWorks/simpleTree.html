@@ -37,69 +37,116 @@
                 <li>Поиск узла может быть выполнен по значению.</li>
             </ul>
         </section>
+         <section>
+            <h2>Что такое листья в дереве?</h2>
+            <p>
+                В теории графов и структур данных <strong>листом</strong> называется узел, не имеющий дочерних элементов. 
+                Листья представляют собой конечные элементы дерева, которые не имеют потомков.
+            </p>
+        </section>
 
+        <section>
+            <h2>Скорость работы функций в дереве</h2>
+            <ul>
+                <li><strong>Добавление узла (AddChild)</strong> – O(1), так как добавление идет напрямую в массив дочерних узлов родителя.</li>
+                <li><strong>Удаление узла (DeleteNode)</strong> – O(n), так как в худшем случае приходится удалять всех потомков рекурсивно.</li>
+                <li><strong>Поиск узла по значению (FindNodesByValue)</strong> – O(n), требуется полный обход дерева.</li>
+                <li><strong>Перемещение узла (MoveNode)</strong> – O(n), так как необходимо найти узел и изменить ссылки.</li>
+                <li><strong>Подсчет количества узлов (Count)</strong> – O(n), так как необходимо посетить каждый узел.</li>
+                <li><strong>Подсчет количества листьев (LeafCount)</strong> – O(n), так как требуется перебор всех узлов для проверки, есть ли у них потомки.</li>
+            </ul>
+        </section>
         <section>
             <h2>Код структуры дерева на Swift</h2>
             <pre><code class="swift">
-class TreeNode<T> {
-    var value: T
-    var parent: TreeNode?
-    var children: [TreeNode] = []
+class TreeNode<T: Equatable> {
+    var value: T // значение в узле
+    weak var parent: TreeNode? //родитель или nil для корня
+    var children: [TreeNode] = [] // список дочерних узлов
     
     init(value: T, parent: TreeNode? = nil) {
         self.value = value
         self.parent = parent
     }
-    
-    func addChild(_ child: TreeNode) {
-        child.parent = self
-        children.append(child)
-    }
-    
-    func removeChild(_ child: TreeNode) {
-        children.removeAll { $0 === child }
-        child.parent = nil
-    }
 }
 
-class SimpleTree<T> {
-    var root: TreeNode<T>?
+
+class SimpleTree<T: Equatable> {
+    var root: TreeNode<T>? //корень, может быть nil
     
-    init(root: TreeNode<T>?) {
+    init(root: TreeNode<T>) {
         self.root = root
     }
     
-    func findNode(value: T) -> TreeNode<T>? where T: Equatable {
-        return findNodeRecursive(node: root, value: value)
+    // ✅ Добавление дочернего узла
+    func addChild(parent: TreeNode<T>, newChild: TreeNode<T>) {
+        
     }
     
-    private func findNodeRecursive(node: TreeNode<T>?, value: T) -> TreeNode<T>? where T: Equatable {
-        guard let node = node else { return nil }
-        if node.value == value { return node }
-        for child in node.children {
-            if let found = findNodeRecursive(node: child, value: value) {
-                return found
-            }
-        }
-        return nil
+    // ✅ Удаление узла и всех его потомков
+    func deleteNode(node: TreeNode<T>) {
+        // Если узел - корень, ничего не удаляем
+       // Удаляем из списка детей родителя
+    // Удаляем всех потомков рекурсивно
+    }
+    
+    // ✅ Получение всех узлов (обход в глубину DFS)
+    func getAllNodes() -> [TreeNode<T>] {
+      
+    }
+    
+    // ✅ Поиск узлов по значению
+    func findNodesByValue(value: T) -> [TreeNode<T>] {
+       
+    
+    // ✅ Перемещение узла в другое место
+    func moveNode(originalNode: TreeNode<T>, newParent: TreeNode<T>) {
+       
+    }
+    
+    // ✅ Подсчет количества узлов в дереве
+    func countNodes() -> Int {
+      
+    }
+    
+    // ✅ Подсчет количества листьев (узлов без потомков)
+    func leafCount() -> Int {
+       
     }
 }
 
-// Пример использования
-let rootNode = TreeNode(value: 1)
-let tree = SimpleTree(root: rootNode)
 
+// Создание узлов
+let root = TreeNode(value: 1)
 let node2 = TreeNode(value: 2)
 let node3 = TreeNode(value: 3)
 let node4 = TreeNode(value: 4)
+let node5 = TreeNode(value: 5)
+let node6 = TreeNode(value: 6)
 
-rootNode.addChild(node2)
-rootNode.addChild(node3)
-node3.addChild(node4)
+// Создание дерева
+let tree = SimpleTree(root: root)
 
-if let found = tree.findNode(value: 3) {
-    print("Найден узел со значением 3")
-}
+// Добавление узлов
+tree.addChild(parent: root, newChild: node2)
+tree.addChild(parent: root, newChild: node3)
+tree.addChild(parent: node3, newChild: node4)
+tree.addChild(parent: node4, newChild: node5)
+tree.addChild(parent: node2, newChild: node6)
+
+// Вывод всех значений узлов
+print(tree.getAllNodes().map { $0.value })  // [1, 2, 6, 3, 4, 5]
+
+// Перемещение узла
+tree.moveNode(originalNode: node5, newParent: node2)
+
+// Проверка после перемещения
+print(tree.getAllNodes().map { $0.value })  // [1, 2, 6, 5, 3, 4]
+
+// Подсчет узлов и листьев
+print("Количество узлов: \(tree.countNodes())")  // 6
+print("Количество листьев: \(tree.leafCount())") // 3
+
             </code></pre>
         </section>
     </main>
