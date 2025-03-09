@@ -1,23 +1,14 @@
-function getRelativePath(file) {
-    let depth = window.location.pathname.split('/').length - 2; // Количество вложенных папок
-    let prefix = '../'.repeat(depth); // Формируем путь к корню
-    return prefix + file; // Возвращаем корректный путь
-}
-
+// loadHTML.js
 function loadHTML(elementId, file) {
-    let path = getRelativePath(file);
-    fetch(path)
-        .then(response => {
-            if (!response.ok) throw new Error(`Ошибка загрузки ${file}: ${response.statusText}`);
-            return response.text();
-        })
+    fetch(file)
+        .then(response => response.text())
         .then(data => {
             document.getElementById(elementId).innerHTML = data;
         })
-        .catch(error => console.error(error));
+        .catch(error => console.error('Ошибка при загрузке:', error));
 }
 
-// Загружаем хедер и футер с учетом вложенности страницы
+// Загрузка хедера и футера
 window.onload = function() {
     loadHTML('header', 'header.html');
     loadHTML('footer', 'footer.html');
