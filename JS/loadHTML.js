@@ -11,5 +11,5 @@ function loadHTML(elementId, file) {
 // Загрузка хедера и футера
 window.onload = function() {
     loadHTML('header', 'header.html');
-    loadHTML('footer', 'footer.html', '../footer.html');
+    loadHTML('footer', 'footer.html');
 };
